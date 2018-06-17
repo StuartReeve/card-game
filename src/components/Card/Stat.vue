@@ -33,10 +33,11 @@ export default class Stat extends Vue {
 </script>
 
 <style lang="scss" scoped>
+@import url('https://fonts.googleapis.com/css?family=PT+Sans|Roboto');
 .stat {
+  font-family: 'Roboto', sans-serif;
   flex-direction: row;
   align-items: center;
-  font-weight: 600;
   margin-top: 12px;
   .stat-name {
     transform: skewX(20deg);

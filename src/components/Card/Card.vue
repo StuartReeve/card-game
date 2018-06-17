@@ -10,7 +10,7 @@
       </div>
       <div class="stats">
         <Stat name="Win Rate" :value="champion.WinRate" :percent="champion.WinRate" />
-        <Stat name="Kills" :value="champion.Kills" :percent="56" />
+        <Stat name="Kills" :value="champion.Kills" :percent="100" />
         <Stat name="Deaths" :value="champion.Deaths" :percent="56" />
         <Stat name="Assists" :value="champion.Assists" :percent="56" />
         <Stat name="Gold" :value="champion.Gold" :percent="56" />
@@ -45,9 +45,11 @@ export default class Card extends Vue {
 </script>
 
 <style lang="scss" scoped>
+@import url('https://fonts.googleapis.com/css?family=PT+Sans');
 .card {
   position: relative;
-  font-family: "Gothic A1", sans-serif;
+  font-family: 'PT Sans', sans-serif;
+  font-weight: lighter;
   color: white;
   width: 265px;
   height: 500px;
