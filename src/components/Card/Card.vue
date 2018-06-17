@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="back">
-      
+               
     </div>
   </div>
 </template>
@@ -37,7 +37,6 @@ import Stat from "./Stat.vue";
 export default class Card extends Vue {
   @Prop() protected champion: Champion;
   private isFlipped: boolean = false;
-  
 
   public flipCard() {
     this.isFlipped = !this.isFlipped;
@@ -47,43 +46,68 @@ export default class Card extends Vue {
 
 <style lang="scss" scoped>
 .card {
+  position: relative;
   font-family: "Gothic A1", sans-serif;
   color: white;
-  background-color: #1e2137;
   width: 265px;
   height: 500px;
   border-radius: 15px;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  padding: 5px 17px 17px 17px;
-  &:hover {
-    box-shadow: 0 0 20px rgb(200, 155, 60);
-  }
-  &.flipped {
-    transform: rotateY(180deg);
-  }
-  .header {
-    font-size: 2em;
-    display: flex;
-    flex-direction: row;
-    .champ-name {
-      flex: 1;
+  .front,
+  .back {
+    background-color: #1e2137;
+    border-radius: 15px;
+    backface-visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: 1s;
+    transform-style: preserve-3d;
+
+    &:hover {
+      box-shadow: 0 0 20px rgb(200, 155, 60);
     }
   }
-  .champion {
-    img {
-      border-radius: 15px;
-    }
-  }
-  .stats {    
-    flex: 1;
-    text-shadow: 1px 1px black;
-    box-sizing: border-box;
-    font-size: 0.8em;
+  .front {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    box-sizing: border-box;
+    padding: 5px 17px 17px 17px;
+    .header {
+      font-size: 2em;
+      display: flex;
+      flex-direction: row;
+      .champ-name {
+        flex: 1;
+      }
+    }
+    .champion {
+      img {
+        border-radius: 15px;
+      }
+    }
+    .stats {
+      flex: 1;
+      text-shadow: 1px 1px black;
+      box-sizing: border-box;
+      font-size: 0.8em;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+  .back {
+    background-image: url("../../assets/logo.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: rotateY(-180deg);
+  }
+  &.flipped {
+    .front {
+      transform: rotateY(-180deg);
+    }
+    .back {
+      transform: rotateY(0);
+    }
   }
 }
 </style>
