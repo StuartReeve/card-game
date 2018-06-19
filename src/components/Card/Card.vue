@@ -1,12 +1,15 @@
 <template>
   <div class="card" :class="{flipped: isFlipped}" @click="flipCard">
+    <div class="back" on-drop>
+               
+    </div>
     <div class="front">
       <div class="header">
         <span class="champ-name">{{champion.Name}}</span>
-        <img width="40px" height="40px" src="https://www.dropbox.com/s/yfrwk3dkavoebyp/test2.png?raw=1" /> 
+        <img width="40px" height="40px" src="https://www.dropbox.com/s/yfrwk3dkavoebyp/test2.png?raw=1" draggable="false" /> 
       </div>
       <div class="champion">
-        <img src="http://i.imgur.com/7pl8Q3g.png" />
+        <img src="http://i.imgur.com/7pl8Q3g.png" draggable="false" />
       </div>
       <div class="stats">
         <Stat name="Win Rate" :value="champion.WinRate" :percent="champion.WinRate" />
@@ -18,9 +21,7 @@
         <Stat name="Damage Taken" :value="champion.DamageTaken" :percent="56" />      
       </div>
     </div>
-    <div class="back">
-               
-    </div>
+    
   </div>
 </template>
 
@@ -47,6 +48,7 @@ export default class Card extends Vue {
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css?family=PT+Sans');
 .card {
+  user-select: none;
   position: relative;
   font-family: 'PT Sans', sans-serif;
   font-weight: lighter;
@@ -54,8 +56,10 @@ export default class Card extends Vue {
   width: 265px;
   height: 500px;
   border-radius: 15px;
+  margin-top: 10px;
   .front,
   .back {
+    cursor: pointer;
     background-color: #1e2137;
     border-radius: 15px;
     backface-visibility: hidden;
