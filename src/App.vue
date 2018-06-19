@@ -4,7 +4,8 @@
     <transition-group name="card-collection" tag="div" class="card-collection">
       <Card v-for="champ in champions" :champion="champ" :key="champ"/>
     </transition-group> -->
-    <Board />
+    <!-- <Board /> -->
+    <Card v-for="champ in champions" :champion="champ" :key="champ"/>
   </div>
 </template>
 

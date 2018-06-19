@@ -1,5 +1,5 @@
 <template>
-  <div class="card" :class="{flipped: isFlipped}" @click="flipCard">
+  <div class="card" :class="{flipped: isFlipped}" @click="flipCard" @mousedown="mouseDown" @mouseup="mouseUp" @mousemove="mouseMove">
     <div class="back" on-drop>
                
     </div>
@@ -39,18 +39,46 @@ export default class Card extends Vue {
   @Prop() protected champion: Champion;
   private isFlipped: boolean = false;
 
+  private dragging: boolean = false;
+  private dragOffset: { x: number; y: number } = { x: 0, y: 0 };
+
   public flipCard() {
     this.isFlipped = !this.isFlipped;
+  }
+
+  private mouseDown(event: MouseEvent) {
+    this.dragging = true;
+    this.dragOffset.x -= event.clientX;
+    this.dragOffset.y -= event.clientY;
+    this.$el.style.position = "absolute";
+    console.log("dragging", this.dragging);
+  }
+
+  private mouseUp(event: MouseEvent) {
+    // this.$el.style.position = null;
+    // this.$el.style.left = null;
+    // this.$el.style.top = null;
+    this.dragging = false;
+    this.dragOffset = { x: 0, y: 0 };
+    console.log("dragging", this.dragging);
+  }
+
+  private mouseMove(event: MouseEvent) {
+    event.preventDefault();
+    if (this.dragging) {
+      this.$el.style.left = (event.clientX + this.dragOffset.x) + "px";
+      this.$el.style.top = (event.clientY + this.dragOffset.y) + "px";
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css?family=PT+Sans');
+@import url("https://fonts.googleapis.com/css?family=PT+Sans");
 .card {
   user-select: none;
   position: relative;
-  font-family: 'PT Sans', sans-serif;
+  font-family: "PT Sans", sans-serif;
   font-weight: lighter;
   color: white;
   width: 265px;

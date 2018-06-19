@@ -5,7 +5,7 @@
             <div class="play" @dragover.prevent @drop="play"></div>
         </div>
         <div class="hand">
-            <Card v-for="(card, i) in hand" :champion="card" :key="i" draggable="true"/>
+            <Card v-for="(card, i) in hand" :champion="card" :key="i"/>
         </div>       
     </div>    
 </template>
@@ -16,9 +16,9 @@ import { Champion } from "../common/interfaces";
 import Card from "../components/Card/Card.vue";
 
 @Component({
-    components: {
-        Card
-    }
+  components: {
+    Card
+  }
 })
 export default class Board extends Vue {
   private ekko: Champion = {
@@ -65,26 +65,20 @@ export default class Board extends Vue {
     DamageDealt: 18208,
     DamageTaken: 17222
   };
-  private hand: Champion[] = [
-    this.ekko,
-    this.ekko2,
-    this.ekko3,
-    this.ekko4
-  ];
+  private hand: Champion[] = [this.ekko, this.ekko2, this.ekko3, this.ekko4];
+
 
   private discard(event: DragEvent) {
-      event.stopPropagation();
-        event.preventDefault();
-      console.log(event);
+    event.stopPropagation();
+    event.preventDefault();
+    console.log(event);
   }
 
   private play(event: DragEvent) {
-      event.stopPropagation();
-        event.preventDefault();
-      console.log(" I CHOOSE YOU");
+    event.stopPropagation();
+    event.preventDefault();
+    console.log(" I CHOOSE YOU");
   }
-
- 
 }
 </script>
 
@@ -103,17 +97,17 @@ export default class Board extends Vue {
     justify-content: space-around;
     .discard,
     .play {
-        width:200px;
-        height: 200px;
-        border: 2px black dashed;
-        margin: 50px;
+      width: 200px;
+      height: 200px;
+      border: 2px black dashed;
+      margin: 50px;
     }
   }
   .hand {
     width: 100%;
     height: 500px;
     border-top: 2px black solid;
-    display: flex;
+    //display: flex;
     justify-content: space-around;
   }
 }

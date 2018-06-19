@@ -19,14 +19,12 @@ export default class Stat extends Vue {
   @Prop() percent: number;
 
   public mounted() {
-    console.log(this.name, this.value, this.percent);
   }
 
   get percentStyle() {
       const temp = {
       width: `${this.percent}%`
     };
-    console.log(temp);
     return temp;
   }
 }
